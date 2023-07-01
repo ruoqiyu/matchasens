@@ -2,7 +2,7 @@ Package: matchasens
 Type: Package
 Title: Matching Designs and Sensitivity Analysis Methods for Observational Studies
 Version: 0.1.0
-Author: Ruoqi Yu, Dylan Small, Paul Rosenbaum
+Author: Ruoqi Yu, Dylan Small
 Maintainer: Ruoqi Yu <ruoqi.yu.ry@gmail.com>
 Description: Build matched samples with similar distributions for observed covariates and conduct sensitivity analysis for the outcome analysis to assess the conclusion's sensitivity to unobserved covariates.
     Hansen (2011) <doi:10.1007/978-1-4419-9389-2_9>.
