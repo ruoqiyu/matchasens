@@ -1,4 +1,4 @@
-match<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),s.cost=100,subX=NULL,solver='rlemon'){
+matchos<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),s.cost=100,subX=NULL,solver='rlemon'){
   #Check input
   stopifnot(is.data.frame(dat))
   stopifnot(is.vector(z))

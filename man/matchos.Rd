@@ -1,8 +1,8 @@
-\name{match}
-\alias{match}
+\name{matchos}
+\alias{matchos}
 \title{Minimum-distance near-fine matching.}
 \usage{
-match(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,
+matchos(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,
 penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),
 s.cost=100,subX=NULL,solver='rlemon')
 }
@@ -56,7 +56,7 @@ detach(nh0506Homocysteine)
 dist<-maha_dense(d$z,X)
 dist$d<-dist$d+1000*as.numeric(dist$d>7)
 dist<-addcaliper(dist, d$z, d$p, c(-.5,.15), stdev=TRUE, penalty=1000)
-o<-match(d$z, dist, d, fine=d$education, ncontrol=2)
+o<-matchos(d$z, dist, d, fine=d$education, ncontrol=2)
 md<-o$data
 head(md)
 }
