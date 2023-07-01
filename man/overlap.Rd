@@ -2,12 +2,11 @@
 \alias{overlap}
 \title{Examine the overlap between the treated and control groups.}
 \usage{
-overlap(ps, z, logit=TRUE, threshold=0.5)
+overlap(score, z, threshold=0.5)
 }
 \arguments{
-\item{ps}{ A vector whose ith coordinate is the propensity score of the ith unit.}
+\item{score}{ A vector of scores to examine overlap. It is usually chosen as the logit propensity score or the propensity score.}
 \item{z}{ A vector whose ith coordinate is 1 for a treated unit and is 0 for a control.}
-\item{logit}{ If logit=TRUE, overlap is examined based on the logit propensity score. Otherwise, overlap is examined based the propensity score.}
 \item{threshold}{ The multiplier of pooled standard deviation to define overlap.}
 }
 \value{

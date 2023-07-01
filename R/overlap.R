@@ -1,6 +1,4 @@
-overlap<-function(ps,z,logit=TRUE,threshold=0.5){
-  if (logit==TRUE) score=log(ps/(1-ps))
-  else score=ps
+overlap<-function(score,z,threshold=0.5){
   pooled.sd=sqrt(var(score[z==1])/2+var(score[z==0])/2)
   min.treated.score=min(score[z==1])
   max.control.score=max(score[z==0])
