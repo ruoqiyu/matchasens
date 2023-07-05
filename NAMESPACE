@@ -1,5 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "as.formula", "cov", "var", "sd", "model.matrix")
+importFrom("stats", "as.formula", "cov", "var", "sd", "model.matrix", "t.test")
 importFrom("plyr", "laply", "count", "daply")
 importFrom("mvnfast", "maha")
 importFrom("methods", "is")

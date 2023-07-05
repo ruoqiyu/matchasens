@@ -31,7 +31,7 @@ dist<-maha_dense(d$z,X)
 o<-matchos(d$z, dist, d)
 matcheddata<-o$data
 Xm<-subset(matcheddata, select=c('female','age','black','education','povertyr','bmi','p'))
-btb=check(cbind(X,p),Xm,d$z,matcheddata$z)
+btb=balance_check(cbind(X,p),Xm,d$z,matcheddata$z)
 loveplot(btb[,5],btb[,4],c('female','age','black','education','povertyr','bmi','p'))
 }
 }

@@ -1,14 +1,15 @@
-\name{check}
-\alias{check}
+\name{balance_check}
+\alias{balance_check}
 \title{Check standardized mean differences (SMDs) of the matched data set.}
 \usage{
-check(fdata, mdata, fz, mz)
+balance_check(fdata, mdata, fz, mz, measure='smd')
 }
 \arguments{
 \item{fdata}{ A full data frame with length(fz) rows and columns being variables that need to check SMDs. fdata and mdata must have the same variables with same column names in the same order.}
 \item{mdata}{ A matched data frame with length(mz) rows and columns being variables that need to check SMDs. fdata and mdata must have the same variables with same column names in the same order.}
 \item{fz}{ A vector whose ith coordinate is 1 for a treated unit and is 0 for a control for subjects in the full data set.}
 \item{mz}{ A vector whose ith coordinate is 1 for a treated unit and is 0 for a control for subjects in the matched data set.}
+\item{measure}{ A character for the name of covariate balance measure. It can be one of 'smd' and 't.test'.}
 }
 \value{ A matrix with one row for each variable and five columns being the mean of treated group, mean of matched control group, mean of full control group, SMD of matched control group and SMD of full control group.
 }
@@ -29,7 +30,7 @@ dist<-maha_dense(d$z,X)
 o<-matchos(d$z, dist, d)
 matcheddata<-o$data
 Xm<-subset(matcheddata, select=c('female','age','black','education','povertyr','bmi','p'))
-check(cbind(X,p),Xm,d$z,matcheddata$z)
+balance_check(cbind(X,p),Xm,d$z,matcheddata$z)
 }
 }
 \references{
