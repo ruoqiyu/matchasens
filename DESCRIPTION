@@ -11,7 +11,7 @@ Description: Build matched samples with similar distributions for observed covar
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: stats, plyr, mvnfast, methods, MASS, rlemon, ggplot2, rlang
+Imports: stats, plyr, mvnfast, methods, MASS, rlemon, ggplot2, rlang, nbpMatching
 Suggests: rrelaxiv
 Additional_repositories:	https://github.com/josherrickson/rrelaxiv
 Note: One minimum cost flow problem may have several or many solutions that are equivalent in providing the same minimum total or mean cost. Minor differences between computers or implementations may have the minor consequence of altering which equivalent solution is produced.

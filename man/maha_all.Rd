@@ -1,29 +1,18 @@
-\name{maha_dense}
-\alias{maha_dense}
-\title{Creates a robust Mahalanobis distance for matching based on a dense network.}
+\name{maha_all}
+\alias{maha_all}
+\title{Creates a robust Mahalanobis distance among all units.}
 \usage{
-maha_dense(z, X,  exact=NULL,
-nearexact=NULL, penalty=100, matrix=FALSE)
+maha_all(X)
 }
 \arguments{
-\item{z}{ A vector whose ith coordinate is 1 for a treated unit and is 0 for a control. }
 \item{X}{ A matrix with length(z) rows giving the covariates.  X should be of full column rank.}
-\item{exact}{ If not NULL, then a vector of length(z)=length(p) giving variable that need to be exactly matched. }
-\item{nearexact}{ If not NULL, then a vector of length length(z) giving variable that need to be exactly matched. }
-\item{penalty}{ The penalty for a mismatch on nearexact.}
-\item{matrix}{ A boolean to indicate whether the distance output will have data type matrix (if matrix=TRUE) or list (if matrix=FALSE).}
 }
 
 \value{
-\item{d}{ A distance object for each pair of treated and control.}
-\item{start}{ The treated subject for each distance.}
-\item{end}{ The control subject for each distance.}
+A distance matrix for each pair of units.
 }
 \description{
-Computes a robust Mahalanobis distance matrix (if matrix=TRUE) or list (if matrix=FAlSE) for use in dense matching. In this case, we compute the distance for all possible pairs of treated and control.
-
-This function and its use are discussed in Rosenbaum (2010).  The robust
-Mahalanobis distance in described in Chapter 8 of Rosenbaum (2010).
+Computes a robust Mahalanobis distance matrix for use in non-bipartite matching and crossmatch test for covariate balance evaluation. In this case, we compute the distance for all possible pairs of two units (treated and treated, treated and control, control and control).
 
 }
 \details{
@@ -38,8 +27,8 @@ The robust Mahalanobis distance uses ranks of covariates rather than the covaria
 data("nh0506Homocysteine")
 attach(nh0506Homocysteine)
 X<-cbind(female,age,black,education,povertyr,bmi)
-dist<-maha_dense(z,X)
-head(dist$d)
+dist<-maha_all(X)
+dist[1:4,1:6]
 detach(nh0506Homocysteine)
 
 }

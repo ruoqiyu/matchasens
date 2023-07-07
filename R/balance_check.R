@@ -1,4 +1,4 @@
-balance_check<-function(fdata,mdata,fz,mz,measure='smd'){
+balance_check<-function(fdata,mdata,fz,mz,measure='smd',s.dist=1000){
   stopifnot(dim(fdata)[2]==dim(mdata)[2])
   stopifnot(colnames(fdata)==colnames(mdata))
   stopifnot(all(fz%in%c(0,1)))
@@ -29,6 +29,7 @@ balance_check<-function(fdata,mdata,fz,mz,measure='smd'){
     rownames(r)<-colnames(fdata)
     colnames(r)<-c('Treated Mean','Control Match Mean','Control All Mean',
                    'Control Match SMD','Control All SMD')
+    r
   }else if (measure=='t.test'){
     nvar=ncol(fdata)
     treatmat.before=fdata[fz==1,]
@@ -45,8 +46,60 @@ balance_check<-function(fdata,mdata,fz,mz,measure='smd'){
     }
     r=cbind(t.test.pval.before,t.test.pval.after)
     rownames(r)<-colnames(fdata)
+    r
+  }else if (measure=='crossmatch'){
+    D=maha_all(mdata)
+    plainmatrix<-as.matrix(s.dist*max(1/min(D[D>0]),1)*D)
+    diag(plainmatrix) <- 0
+    mdm<-nbpMatching::distancematrix(plainmatrix)
+    res<-nbpMatching::nonbimatch(mdm)
+    
+    mt_min<-pmin(as.numeric(res$matches$Group1.Row),
+             as.numeric(res$matches$Group2.Row))
+    mt_max<-pmax(as.numeric(res$matches$Group1.Row),
+             as.numeric(res$matches$Group2.Row))
+    z0<-mz[(mt_min>0)&(mt_max<=length(mz))]
+    mt0<-factor(mt_min[(mt_min>0)&(mt_max<=length(mz))])
+    tab<-table(factor(z0),mt0)
+    a1<-sum(tab[1,]==1)
+    
+    crossmatchdist<-function(N,n){
+      if (bigN%%2 == 1){
+        stop("The number of subjects, bigN, should be even")
+        return(NA)
+      }
+      I<-N/2
+      cmd<-c()
+      for (a1 in 0:I){
+        a2 <- (n-a1)/2
+        if ((floor(a2)==a2)&(a2>=0)){
+          a0<-I-(a1+a2)
+          if (a0>=0){
+            pr<-factorial(I)/choose(N,n)
+            pr<-pr*(2^a1)/(factorial(a0)*factorial(a1)*factorial(a2))
+            cmd<-cbind(cmd,c(a0,a1,a2,pr))
+          }
+        }
+      }
+      cmd <- rbind(cmd,cumsum(cmd[4,]))
+      cmd
+    }
+    
+    bigN<-length(z0)
+    smalln<-sum(z0)
+    if (bigN<340){
+      dist<-crossmatchdist(bigN,smalln)
+      pval<-dist[5,dist[2,]==a1]
+    }else{
+      pval<-NA
+    }
+    m<-bigN-smalln
+    Ea1<-(smalln*m/(bigN-1))
+    Va1<-2*smalln*(smalln-1)*m*(m-1)/((bigN-3)*(bigN-1)*(bigN-1))
+    dev<-(a1-Ea1)/sqrt(Va1)
+    approx<-stats::pnorm(dev)
+    list(a1=a1,Ea1=Ea1,Va1=Va1,dev=dev,pval=pval,approxpval=approx)
   }else{
     warning('Consider choosing a different covariate balance measure.')
   }
-  r
 }
