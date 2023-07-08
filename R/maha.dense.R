@@ -1,4 +1,4 @@
-maha_dense<-function (z, X, exact=NULL, nearexact=NULL, penalty=100, matrix=FALSE){
+maha.dense<-function (z, X, exact=NULL, nearexact=NULL, penalty=100, matrix=FALSE){
   Xmatrix<-function(x){
     if (is.vector(x) || is.factor(x)) x<-matrix(x,nrow=length(z))
 

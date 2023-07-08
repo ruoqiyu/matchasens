@@ -1,8 +1,8 @@
-\name{maha_all}
-\alias{maha_all}
+\name{maha.all}
+\alias{maha.all}
 \title{Creates a robust Mahalanobis distance among all units.}
 \usage{
-maha_all(X)
+maha.all(X)
 }
 \arguments{
 \item{X}{ A matrix with length(z) rows giving the covariates.  X should be of full column rank.}
@@ -27,7 +27,7 @@ The robust Mahalanobis distance uses ranks of covariates rather than the covaria
 data("nh0506Homocysteine")
 attach(nh0506Homocysteine)
 X<-cbind(female,age,black,education,povertyr,bmi)
-dist<-maha_all(X)
+dist<-maha.all(X)
 dist[1:4,1:6]
 detach(nh0506Homocysteine)
 

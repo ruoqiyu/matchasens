@@ -1,4 +1,4 @@
-addcaliper<-function(dist,z,dx,rg, stdev = FALSE, penalty = 1000, constant = TRUE){
+add.caliper<-function(dist,z,dx,rg, stdev = FALSE, penalty = 1000, constant = TRUE){
 
   if (length(rg)==1) rg=c(-abs(rg),abs(rg))
   stopifnot(is.vector(rg)&(length(rg)==2))

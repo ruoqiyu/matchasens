@@ -1,8 +1,8 @@
-\name{maha_sparse}
-\alias{maha_sparse}
+\name{maha.sparse}
+\alias{maha.sparse}
 \title{Creates a robust Mahalanobis distance for matching based on a sparse network.}
 \usage{
-maha_sparse(z,X,p=rep(1,length(z)),caliper=1,stdev=FALSE,constant=NULL,ncontrol=1,
+maha.sparse(z,X,p=rep(1,length(z)),caliper=1,stdev=FALSE,constant=NULL,ncontrol=1,
 exact=NULL,nearexact=NULL,penalty=100,subX=NULL,ties.all=TRUE)
 }
 \arguments{
@@ -51,11 +51,11 @@ d<-cbind(nh0506Homocysteine,p)
 detach(nh0506Homocysteine)
 \donttest{
 #apply symmetric caliper 0.15 on propensity score
-dist1<-maha_sparse(d$z,X,p,0.15)
+dist1<-maha.sparse(d$z,X,p,0.15)
 length(dist1$d)
 }
 #apply asymmetric caliper c(-0.2,0.1) on propensity score
-dist2<-maha_sparse(d$z,X,p,c(-0.2,0.1))
+dist2<-maha.sparse(d$z,X,p,c(-0.2,0.1))
 length(dist2$d)
 }
 \references{

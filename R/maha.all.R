@@ -1,4 +1,4 @@
-maha_all<-function(X){
+maha.all<-function(X){
   Xmatrix<-function(x){
     if (is.vector(x) || is.factor(x)) x<-matrix(x,nrow=length(x))
     

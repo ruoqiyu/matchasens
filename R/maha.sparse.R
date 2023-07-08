@@ -1,4 +1,5 @@
-maha_sparse<-function(z,X,p=rep(1,length(z)),caliper=1,stdev=FALSE,constant=NULL,ncontrol=1,exact=NULL,nearexact=NULL,penalty=100,subX=NULL,ties.all=TRUE){
+maha.sparse<-function(z,X,p=rep(1,length(z)),caliper=1,stdev=FALSE,constant=NULL,ncontrol=1,
+                      exact=NULL,nearexact=NULL,penalty=100,subX=NULL,ties.all=TRUE){
   Xmatrix<-function(x){
     if (is.vector(x) || is.factor(x)) x<-matrix(x,nrow=length(z))
 

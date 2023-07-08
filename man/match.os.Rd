@@ -1,8 +1,8 @@
-\name{matchos}
-\alias{matchos}
+\name{match.os}
+\alias{match.os}
 \title{Minimum-distance near-fine matching.}
 \usage{
-matchos(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,
+match.os(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,
 penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),
 s.cost=100,subX=NULL,solver='rlemon')
 }
@@ -53,10 +53,10 @@ X<-cbind(female,age,black,education,povertyr,bmi)
 p<-glm(z~female+age+black+education+povertyr+bmi,family=binomial)$fitted.values
 d<-cbind(nh0506Homocysteine,p)
 detach(nh0506Homocysteine)
-dist<-maha_dense(d$z,X)
+dist<-maha.dense(d$z,X)
 dist$d<-dist$d+1000*as.numeric(dist$d>7)
-dist<-addcaliper(dist, d$z, d$p, c(-.5,.15), stdev=TRUE, penalty=1000)
-o<-matchos(d$z, dist, d, fine=d$education, ncontrol=2)
+dist<-add.caliper(dist, d$z, d$p, c(-.5,.15), stdev=TRUE, penalty=1000)
+o<-match.os(d$z, dist, d, fine=d$education, ncontrol=2)
 md<-o$data
 head(md)
 }

@@ -1,8 +1,8 @@
-\name{addcaliper}
-\alias{addcaliper}
+\name{add.caliper}
+\alias{add.caliper}
 \title{Add a caliper, that need not be symmetric, to a distance object.}
 \usage{
-addcaliper(dist, z, dx, rg, stdev = FALSE, penalty = 1000, constant = TRUE)
+add.caliper(dist, z, dx, rg, stdev = FALSE, penalty = 1000, constant = TRUE)
 }
 \arguments{
 \item{dist}{ A distance matrix or a distance object with three components: d, start, end, typically created by maha_dense or maha_sparse. d[i] gives the distance between the (start[i])th treated and the (end[i]-sum(z))th control.}
@@ -36,12 +36,12 @@ X<-cbind(female,age,black,education,povertyr,bmi)
 p<-glm(z~female+age+black+education+povertyr+bmi,family=binomial)$fitted.values
 d<-cbind(nh0506Homocysteine,p)
 detach(nh0506Homocysteine)
-dist0<-maha_dense(d$z,X)
+dist0<-maha.dense(d$z,X)
 #symmetric caliper
-dist1<-addcaliper(dist0, d$z, d$p, c(-.3,.3), stdev = TRUE, penalty = 1000)
+dist1<-add.caliper(dist0, d$z, d$p, c(-.3,.3), stdev = TRUE, penalty = 1000)
 head(dist1$d)
 #asymmetric caliper
-dist2<-addcaliper(dist0, d$z, d$p, c(-.5,.1), stdev = TRUE, penalty = 1000)
+dist2<-add.caliper(dist0, d$z, d$p, c(-.5,.1), stdev = TRUE, penalty = 1000)
 head(dist2$d)
 }
 \references{

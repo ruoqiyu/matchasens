@@ -1,8 +1,8 @@
-\name{loveplot}
-\alias{loveplot}
+\name{love.plot}
+\alias{love.plot}
 \title{Graphical way of showing how the covariate balance measure changed from before matching to after.}
 \usage{
-loveplot(before,after,covariates,name='abs.stand.diff',
+love.plot(before,after,covariates,name='abs.stand.diff',
 sizev=2,shapev=c(4,1),linex=c(0.1,0.2))
 }
 \arguments{
@@ -27,12 +27,12 @@ X<-cbind(female,age,black,education,povertyr,bmi)
 p<-glm(z~female+age+black+education+povertyr+bmi,family=binomial)$fitted.values
 d<-cbind(nh0506Homocysteine,p)
 detach(nh0506Homocysteine)
-dist<-maha_dense(d$z,X)
-o<-matchos(d$z, dist, d)
+dist<-maha.dense(d$z,X)
+o<-match.os(d$z, dist, d)
 matcheddata<-o$data
 Xm<-subset(matcheddata, select=c('female','age','black','education','povertyr','bmi','p'))
-btb=balance_check(cbind(X,p),Xm,d$z,matcheddata$z)
-loveplot(btb[,5],btb[,4],c('female','age','black','education','povertyr','bmi','p'))
+btb=balance.check(cbind(X,p),Xm,d$z,matcheddata$z)
+love.plot(btb[,5],btb[,4],c('female','age','black','education','povertyr','bmi','p'))
 }
 }
 

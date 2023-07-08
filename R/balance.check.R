@@ -1,4 +1,4 @@
-balance_check<-function(fdata,mdata,fz,mz,measure='smd',s.dist=1000){
+balance.check<-function(fdata,mdata,fz,mz,measure='smd',s.dist=1000){
   stopifnot(dim(fdata)[2]==dim(mdata)[2])
   stopifnot(colnames(fdata)==colnames(mdata))
   stopifnot(all(fz%in%c(0,1)))
@@ -48,7 +48,7 @@ balance_check<-function(fdata,mdata,fz,mz,measure='smd',s.dist=1000){
     rownames(r)<-colnames(fdata)
     r
   }else if (measure=='crossmatch'){
-    D=maha_all(mdata)
+    D=maha.all(mdata)
     plainmatrix<-as.matrix(s.dist*max(1/min(D[D>0]),1)*D)
     diag(plainmatrix) <- 0
     mdm<-nbpMatching::distancematrix(plainmatrix)

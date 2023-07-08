@@ -1,8 +1,8 @@
-\name{balance_check}
-\alias{balance_check}
+\name{balance.check}
+\alias{balance.check}
 \title{Check standardized mean differences (SMDs) of the matched data set.}
 \usage{
-balance_check(fdata,mdata,fz,mz,measure='smd',s.dist=1000)
+balance.check(fdata,mdata,fz,mz,measure='smd',s.dist=1000)
 }
 \arguments{
 \item{fdata}{ A full data frame with length(fz) rows and columns being variables that need to check SMDs. fdata and mdata must have the same variables with same column names in the same order.}
@@ -27,11 +27,11 @@ X<-cbind(female,age,black,education,povertyr,bmi)
 p<-glm(z~female+age+black+education+povertyr+bmi,family=binomial)$fitted.values
 d<-cbind(nh0506Homocysteine,p)
 detach(nh0506Homocysteine)
-dist<-maha_dense(d$z,X)
-o<-matchos(d$z, dist, d)
+dist<-maha.dense(d$z,X)
+o<-match.os(d$z, dist, d)
 matcheddata<-o$data
 Xm<-subset(matcheddata, select=c('female','age','black','education','povertyr','bmi','p'))
-balance_check(cbind(X,p),Xm,d$z,matcheddata$z)
+balance.check(cbind(X,p),Xm,d$z,matcheddata$z)
 }
 }
 \references{

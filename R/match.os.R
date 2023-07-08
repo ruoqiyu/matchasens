@@ -1,4 +1,6 @@
-matchos<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),s.cost=100,subX=NULL,solver='rlemon'){
+match.os<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z)),ncontrol=1,
+                   penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),
+                   s.cost=100,subX=NULL,solver='rlemon'){
   #Check input
   stopifnot(is.data.frame(dat))
   stopifnot(is.vector(z))
@@ -62,7 +64,9 @@ matchos<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z))
   }
 
   #do match
-  net<-function(z,dist,ncontrol=1,fine=rep(1,length(z)),penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),s.cost=100,subX=NULL){
+  net<-function(z,dist,ncontrol=1,fine=rep(1,length(z)),
+                penalty=ifelse(is.matrix(dist),round(max(dist)*1000),round(max(dist$d)*1000)),
+                s.cost=100,subX=NULL){
 
     #check input
     stopifnot(is.vector(z))
@@ -268,7 +272,8 @@ matchos<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z))
                                    function(treat.edges) treat.edges$control,.drop_o=FALSE))
     id1<-(1:n)[z==1]
     id0<-(1:n)[z==0]
-    matchid<-matrix(c(id1[as.numeric(row.names(matches))], id0[as.vector((matches-sum(z)))]),ncol=ncontrol+1)
+    matchid<-matrix(c(id1[as.numeric(row.names(matches))],id0[as.vector((matches-sum(z)))]),
+                    ncol=ncontrol+1)
     matchid<-as.vector(t(matchid))
     dat1<-dat[matchid,]
     zm<-z[matchid]
@@ -279,7 +284,7 @@ matchos<-function(z,dist,dat,p=rep(1,length(z)),exact=NULL,fine=rep(1,length(z))
   }
 
   if(m[[1]]==0) {
-    warning("The match you requested is infeasible, reconsider caliper or ncontrol or exact for distance.")
+    warning("The match you requested is infeasible, reconsider caliper or ncontrol or exact for distance")
   }
   m
 }

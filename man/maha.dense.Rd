@@ -1,9 +1,8 @@
-\name{maha_dense}
-\alias{maha_dense}
+\name{maha.dense}
+\alias{maha.dense}
 \title{Creates a robust Mahalanobis distance for matching based on a dense network.}
 \usage{
-maha_dense(z, X,  exact=NULL,
-nearexact=NULL, penalty=100, matrix=FALSE)
+maha.dense(z, X, exact=NULL, nearexact=NULL, penalty=100, matrix=FALSE)
 }
 \arguments{
 \item{z}{ A vector whose ith coordinate is 1 for a treated unit and is 0 for a control. }
@@ -38,7 +37,7 @@ The robust Mahalanobis distance uses ranks of covariates rather than the covaria
 data("nh0506Homocysteine")
 attach(nh0506Homocysteine)
 X<-cbind(female,age,black,education,povertyr,bmi)
-dist<-maha_dense(z,X)
+dist<-maha.dense(z,X)
 head(dist$d)
 detach(nh0506Homocysteine)
 
