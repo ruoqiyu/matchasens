@@ -44,8 +44,6 @@ For near-fine balannce balance, see Yang et al. (2012).
 You MUST install and load the optmatch package to use match().
 }
 \examples{
-# To run this example, you must install and load the optmatch package.
-# The optmatch is available on CRAN and Github.
 \donttest{
 data("nh0506Homocysteine")
 attach(nh0506Homocysteine)
@@ -54,7 +52,6 @@ p<-glm(z~female+age+black+education+povertyr+bmi,family=binomial)$fitted.values
 d<-cbind(nh0506Homocysteine,p)
 detach(nh0506Homocysteine)
 dist<-maha.dense(d$z,X)
-dist$d<-dist$d+1000*as.numeric(dist$d>7)
 dist<-add.caliper(dist, d$z, d$p, c(-.5,.15), stdev=TRUE, penalty=1000)
 o<-match.os(d$z, dist, d, fine=d$education, ncontrol=2)
 md<-o$data
