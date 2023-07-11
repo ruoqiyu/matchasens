@@ -62,8 +62,7 @@ sens.ci<-function(y,gamma=1,method='m',inner=0,trim=3,lambda=1/2,
       CI<-c(min.lowerCI,max.upperCI)
     }
     names(CI)<-c("minimum","maximum")
-    list(PointEstimate=PointEstimate,Confidence.Interval=CI,
-         search.interval=interval,tolerance=tol)
+    list(PointEstimate=PointEstimate,Confidence.Interval=CI)
   }else{
     warning('method needs to be \'m\'.')
   }

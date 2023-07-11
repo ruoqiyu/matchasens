@@ -30,10 +30,8 @@ The sensitivity parameter: gamma=1 for a randomization test, gamma>1 for sensiti
 }
 
 \value{
-\item{PointEstimate}{An interval of point estimates allowing for a bias of gamma in treatment assignment.  Rounded if detail=FALSE.}
-\item{CI}{An confidence interval allowing for a bias of gamma in treatment assignment.  Rounded if detail=FALSE.}
-\item{search.interval}{If detail=TRUE, the interval of parameter values searched to find the estimates and confidence intervals.}
-\item{tolerance}{If detail=TRUE, the tolerance used in solving for estimates and confidence intervals.}
+\item{PointEstimate}{An interval of point estimates allowing for a bias of gamma in treatment assignment.}
+\item{CI}{An confidence interval allowing for a bias of gamma in treatment assignment.}
 }
 
 \description{
