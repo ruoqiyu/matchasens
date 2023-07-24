@@ -5,7 +5,7 @@ Point estimate and confidence interval for sensitivity analysis in observational
 }
 \usage{
 sens.ci(y,gamma=1,method='m',inner=0,trim=3,lambda=1/2,
-    weight.par=c(1,1,1),alpha=0.05,one.sided=TRUE,
+    weight.par=c(1,1,1),alpha=0.05,alternative='two-sided',
     tol=NULL, interval=NULL)
 }
 
@@ -24,7 +24,9 @@ The sensitivity parameter: gamma=1 for a randomization test, gamma>1 for sensiti
 \item{weight.par}{A vector of three parameters (m,m1,m2) that determine the weights, as in expression (5) in Rosenbaum (2014) or expression (8) in Rosenbaum (2011) where they are called m (for m), underline(m) for m1, and overline(m) for m2.
 }
 \item{alpha}{1-alpha is the coverage of the confidence interval.}
-\item{one.sided}{If TRUE, the confidence interval is one sided.  If FALSE, the confidence interval is two-sided.  The default is one-sided.}
+\item{alternative}{
+If alternative='greater', the one-sided alternative hypothesis is that treatment increases the level of response by at least tau. If alternative='less', the one-sided alternative that the treatment decreases the level of response by at least tau. If alternative='two-sided', the alternative hypothesis is two-sided.
+}
 \item{tol}{The sens.ci function calls the R function uniroot, and tol is the tol (or tolerance) parameter in that call. If tol=NULL, sens.ci picks a reasonable tolerance.}
 \item{interval}{The sens.ci function calls the R function uniroot, and interval is the interval parameter in that call. If interval=NULL, sens.ci picks a reasonable interval.}
 }

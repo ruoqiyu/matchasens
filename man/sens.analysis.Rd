@@ -4,7 +4,7 @@
 Sensitivity analysis in observational studies.
 }
 \usage{
-sens.analysis(y,gamma=1,tau=0,method='m',
+sens.analysis(y,gamma=1,tau=0,alternative='two-sided',method='m',
 inner=0,trim=3,lambda=1/2,weight.par=c(1,1,1))
 }
 \arguments{
@@ -15,7 +15,10 @@ An n by J matrix where (i) the rows are n matched sets, (ii) the first column is
 The sensitivity parameter: gamma=1 for a randomization test, gamma>1 for sensitivity bounds. This parameter gamma is denoted by the upper case Greek letter gamma in the literature, e.g., Rosenbaum (2007, 2014).
 }
 \item{tau}{
-If tau=0, test the null hypothesis of no treatment effect.  If tau is not 0, test the null hypothesis that the treatment effect is an additive shift of tau against the alternative that the effect is larger than tau.
+If tau=0, test the null hypothesis of no treatment effect.  If tau is not 0, test the null hypothesis that the treatment effect is an additive shift of tau against the alternative that the effect is larger than tau in the direction specified by alternative.
+}
+\item{alternative}{
+If alternative='greater', the one-sided alternative hypothesis is that treatment increases the level of response by at least tau. If alternative='less', the one-sided alternative that the treatment decreases the level of response by at least tau. If alternative='two-sided', the alternative hypothesis is two-sided.
 }
 \item{method}{
 If method='m', using weighted Huber-Maritz M-statistics determined by the parameters, namely inner, trim, lambda, weight.par. For example:
@@ -50,7 +53,7 @@ A vector of three parameters (m,m1,m2) that determine the weights, as in express
 
 }
 \value{
-\item{pval}{Approximate upper bound on the one-sided P-value.}
+\item{pval}{Approximate upper bound on the P-value. }
 \item{deviate}{Deviate that is compared to the upper tail of the standard Normal distribution to obtain the P-value.}
 \item{statistic}{Value of the test statistic.}
 \item{expectation}{Maximum null expectation of the test statistic for the given value of gamma.}
@@ -58,7 +61,7 @@ A vector of three parameters (m,m1,m2) that determine the weights, as in express
 }
 
 \description{
-Computes the large sample approximation to the upper bound on the one sided P-value testing the null hypothesis of no treatment effect in a matched observational study with a fixed number of controls matched to each treated subject. If method='m', the function uses an unweighted or a weighted version of Huber-Maritz M-statistics as test statistics, with weights defined by weights.par.
+Computes the large sample approximation to the upper bound on the P-value testing the null hypothesis of no treatment effect versus the alternative hypothesis in a matched observational study with a fixed number of controls matched to each treated subject. If method='m', the function uses an unweighted or a weighted version of Huber-Maritz M-statistics as test statistics, with weights defined by weights.par.
 }
 
 
@@ -104,9 +107,6 @@ Tardif, S. (1987). Efficiency and optimality results for tests based on weighted
 
 }
 
-\note{
-The one-sided alternative hypothesis is that treatment increases the level of response.  Apply senmw to -y to test against the alternative that the treatment decreases the level of response.  One way to perform a two sided test is to perform both tests and double the smaller P-value bound.
-}
 
 
 
